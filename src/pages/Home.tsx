@@ -372,7 +372,7 @@ export default function Home() {
     <>
       <main>
         <section
-          className="hero-banner flex min-h-screen  items-center overflow-hidden px-6 py-12 sm:px-12 lg:px-20"
+          className="hero-banner flex min-h-screen lg:min-h-[80vh]  items-center overflow-hidden px-6 py-12 sm:px-12 lg:px-20"
           aria-labelledby="hero-title"
         >
           <div className="mx-auto w-full max-w-6xl">
@@ -997,7 +997,7 @@ export default function Home() {
             </header>
 
             <div className="space-y-2">
-              <details className="group rounded-2xl border border-[#dedede] bg-white shadow-[0_3px_10px_rgba(0,0,0,0.07)]">
+              <details className="font-montserrat-medium group rounded-2xl border border-[#dedede] bg-white shadow-[0_3px_10px_rgba(0,0,0,0.07)]">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-3  text-[#5e5e5e] [&::-webkit-details-marker]:hidden">
                   ¿Cómo funciona el proceso de reserva?
                   <svg
@@ -1018,7 +1018,7 @@ export default function Home() {
                 </p>
               </details>
 
-              <details className="group rounded-2xl border border-[#dedede] bg-white shadow-[0_3px_10px_rgba(0,0,0,0.07)]">
+              <details className="font-montserrat-medium group rounded-2xl border border-[#dedede] bg-white shadow-[0_3px_10px_rgba(0,0,0,0.07)]">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-3 text-[#5e5e5e] [&::-webkit-details-marker]:hidden">
                   ¿Qué garantías ofrecen sobre la calidad del servicio?
                   <svg
@@ -1039,7 +1039,7 @@ export default function Home() {
                 </p>
               </details>
 
-              <details className="group rounded-2xl border border-[#dedede] bg-white shadow-[0_3px_10px_rgba(0,0,0,0.07)]">
+              <details className="font-montserrat-medium group rounded-2xl border border-[#dedede] bg-white shadow-[0_3px_10px_rgba(0,0,0,0.07)]">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-3  text-[#5e5e5e] [&::-webkit-details-marker]:hidden">
                   ¿Cuánto cuesta usar la plataforma?
                   <svg
@@ -1060,7 +1060,7 @@ export default function Home() {
                 </p>
               </details>
 
-              <details className="group rounded-2xl border border-[#dedede] bg-white shadow-[0_3px_10px_rgba(0,0,0,0.07)]">
+              <details className="font-montserrat-medium group rounded-2xl border border-[#dedede] bg-white shadow-[0_3px_10px_rgba(0,0,0,0.07)]">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-3  text-[#5e5e5e] [&::-webkit-details-marker]:hidden">
                   ¿Puedo cancelar una reserva?
                   <svg
@@ -1081,7 +1081,7 @@ export default function Home() {
                 </p>
               </details>
 
-              <details className="group rounded-2xl border border-[#dedede] bg-white shadow-[0_3px_10px_rgba(0,0,0,0.07)]">
+              <details className="font-montserrat-medium group rounded-2xl border border-[#dedede] bg-white shadow-[0_3px_10px_rgba(0,0,0,0.07)]">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-3  text-[#5e5e5e] [&::-webkit-details-marker]:hidden">
                   ¿Cómo me registro como talento?
                   <svg
@@ -1102,7 +1102,7 @@ export default function Home() {
                 </p>
               </details>
 
-              <details className="group rounded-2xl border border-[#dedede] bg-white shadow-[0_3px_10px_rgba(0,0,0,0.07)]">
+              <details className="font-montserrat-medium group rounded-2xl border border-[#dedede] bg-white shadow-[0_3px_10px_rgba(0,0,0,0.07)]">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-3  text-[#5e5e5e] [&::-webkit-details-marker]:hidden">
                   ¿Qué tipos de eventos manejan?
                   <svg

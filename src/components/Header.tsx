@@ -71,7 +71,7 @@ export default function Header() {
             </span>
             <a
               className="inline-flex min-h-8 items-center rounded-md border border-white/80 px-3 text-xs font-semibold transition-colors hover:bg-white/15"
-              href="/login"
+              href="https://admin.martzentertainment.com/"
             >
               Iniciar Sesión
             </a>
