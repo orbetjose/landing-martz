@@ -2,28 +2,28 @@ import { useState, type FormEvent, type ReactNode } from "react";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-const CONTACT_API_URL = "http://landing-martz.local/wp-json/martz/v1/contact";
+const CONTACT_API_URL = "https://wp.martzentertainment.com/wp-json/martz/v1/contact";
 
 const values = [
   {
     title: "Pasión",
     description:
       "Amamos lo que hacemos y nos apasiona ver eventos exitosos que crean recuerdos duraderos.",
-    icon: "http://landing-martz.local/wp-content/uploads/2026/09/ico-pasion.png",
+    icon: "https://wp.martzentertainment.com/wp-content/uploads/2026/09/ico-pasion.png",
     height: "h-10",
   },
   {
     title: "Excelencia",
     description:
       "Nos esforzamos por ofrecer el más alto nivel de calidad en cada interacción.",
-    icon: "http://landing-martz.local/wp-content/uploads/2026/09/ico-excelence.png",
+    icon: "https://wp.martzentertainment.com/wp-content/uploads/2026/09/ico-excelence.png",
     height: "h-15",
   },
   {
     title: "Comunidad",
     description:
       "Creemos en el poder de la colaboración y en construir relaciones duraderas.",
-    icon: "http://landing-martz.local/wp-content/uploads/2026/09/ico-community.png",
+    icon: "https://wp.martzentertainment.com/wp-content/uploads/2026/09/ico-community.png",
     height: "h-10",
   },
 ];
@@ -52,7 +52,7 @@ const entertainmentServices: EntertainmentService[] = [
       </svg>
     ),
     iconImage:
-      "http://landing-martz.local/wp-content/uploads/2026/09/djs-ico.png",
+      "https://wp.martzentertainment.com/wp-content/uploads/2026/09/djs-ico.png",
   },
   {
     title: "Karaoke",
@@ -70,7 +70,7 @@ const entertainmentServices: EntertainmentService[] = [
       </svg>
     ),
     iconImage:
-      "http://landing-martz.local/wp-content/uploads/2026/09/karaoke-ico.png",
+      "https://wp.martzentertainment.com/wp-content/uploads/2026/09/karaoke-ico.png",
   },
   {
     title: "Cantantes",
@@ -88,7 +88,7 @@ const entertainmentServices: EntertainmentService[] = [
       </svg>
     ),
     iconImage:
-      "http://landing-martz.local/wp-content/uploads/2026/09/cantantes-ico.png",
+      "https://wp.martzentertainment.com/wp-content/uploads/2026/09/cantantes-ico.png",
   },
   {
     title: "Tríos",
@@ -108,7 +108,7 @@ const entertainmentServices: EntertainmentService[] = [
       </svg>
     ),
     iconImage:
-      "http://landing-martz.local/wp-content/uploads/2026/09/trios-ico.png",
+      "https://wp.martzentertainment.com/wp-content/uploads/2026/09/trios-ico.png",
   },
   {
     title: "Bandas en vivo",
@@ -126,7 +126,7 @@ const entertainmentServices: EntertainmentService[] = [
       </svg>
     ),
     iconImage:
-      "http://landing-martz.local/wp-content/uploads/2026/09/bandas-ico.png",
+      "https://wp.martzentertainment.com/wp-content/uploads/2026/09/bandas-ico.png",
   },
 ];
 
@@ -156,7 +156,7 @@ const howItWorksSteps: HowItWorksStep[] = [
       </svg>
     ),
     iconImage:
-      "http://landing-martz.local/wp-content/uploads/2026/09/registrate-ico.png",
+      "https://wp.martzentertainment.com/wp-content/uploads/2026/09/registrate-ico.png",
   },
   {
     title: "Descubre",
@@ -175,7 +175,7 @@ const howItWorksSteps: HowItWorksStep[] = [
       </svg>
     ),
     iconImage:
-      "http://landing-martz.local/wp-content/uploads/2026/09/descubre-ico.png",
+      "https://wp.martzentertainment.com/wp-content/uploads/2026/09/descubre-ico.png",
   },
   {
     title: "Reserva",
@@ -196,7 +196,7 @@ const howItWorksSteps: HowItWorksStep[] = [
       </svg>
     ),
     iconImage:
-      "http://landing-martz.local/wp-content/uploads/2026/09/reserva-ico.png",
+      "https://wp.martzentertainment.com/wp-content/uploads/2026/09/reserva-ico.png",
   },
   {
     title: "Disfruta",
@@ -214,7 +214,7 @@ const howItWorksSteps: HowItWorksStep[] = [
       </svg>
     ),
     iconImage:
-      "http://landing-martz.local/wp-content/uploads/2026/09/registrate-ico.png",
+      "https://wp.martzentertainment.com/wp-content/uploads/2026/09/registrate-ico.png",
   },
 ];
 
@@ -222,19 +222,19 @@ const serviceBenefits = [
   {
     description: "Comparar opciones y precios fácilmente.",
     image:
-      "http://landing-martz.local/wp-content/uploads/2026/09/live-image.webp",
+      "https://wp.martzentertainment.com/wp-content/uploads/2026/09/live-image.webp",
     imageAlt: "Celebración con música en vivo y asistentes",
   },
   {
     description: "Reservar rápido y seguro.",
     image:
-      "http://landing-martz.local/wp-content/uploads/2026/09/food-image.webp",
+      "https://wp.martzentertainment.com/wp-content/uploads/2026/09/food-image.webp",
     imageAlt: "Servicio de catering preparado para un evento",
   },
   {
     description: "Garantía de calidad en todos los servicios.",
     image:
-      "http://landing-martz.local/wp-content/uploads/2026/09/party-image.webp",
+      "https://wp.martzentertainment.com/wp-content/uploads/2026/09/party-image.webp",
     imageAlt: "DJ animando a los asistentes de un evento",
   },
 ];
@@ -260,7 +260,7 @@ const trustFeatures: TrustFeature[] = [
       </svg>
     ),
     iconImage:
-      "http://landing-martz.local/wp-content/uploads/2026/09/pagos-protegidos.png",
+      "https://wp.martzentertainment.com/wp-content/uploads/2026/09/pagos-protegidos.png",
   },
   {
     title: "Atención al cliente",
@@ -279,7 +279,7 @@ const trustFeatures: TrustFeature[] = [
       </svg>
     ),
     iconImage:
-      "http://landing-martz.local/wp-content/uploads/2026/09/atencion-cliente.png",
+      "https://wp.martzentertainment.com/wp-content/uploads/2026/09/atencion-cliente.png",
   },
   {
     title: "Gestión transparente",
@@ -298,7 +298,7 @@ const trustFeatures: TrustFeature[] = [
       </svg>
     ),
     iconImage:
-      "http://landing-martz.local/wp-content/uploads/2026/09/gestion-transparente.png",
+      "https://wp.martzentertainment.com/wp-content/uploads/2026/09/gestion-transparente.png",
   },
 ];
 
@@ -308,7 +308,7 @@ const serviceCards = [
     description:
       "Desde bandas completas hasta solistas, encuentra el sonido perfecto para tu evento.",
     image:
-      "http://landing-martz.local/wp-content/uploads/2026/09/music-image.webp",
+      "https://wp.martzentertainment.com/wp-content/uploads/2026/09/music-image.webp",
     imageAlt: "Músicos en vivo durante una celebración",
   },
   {
@@ -316,7 +316,7 @@ const serviceCards = [
     description:
       "Captura cada momento con profesionales que cuentan tu historia.",
     image:
-      "http://landing-martz.local/wp-content/uploads/2026/09/fotografia-image.webp",
+      "https://wp.martzentertainment.com/wp-content/uploads/2026/09/fotografia-image.webp",
     imageAlt: "Cámara profesional de fotografía y video",
   },
   {
@@ -324,7 +324,7 @@ const serviceCards = [
     description:
       "Experiencias gastronómicas y bebidas para todos tus invitados.",
     image:
-      "http://landing-martz.local/wp-content/uploads/2026/09/catering-image.webp",
+      "https://wp.martzentertainment.com/wp-content/uploads/2026/09/catering-image.webp",
     imageAlt: "Mesa con servicio de catering para un evento",
   },
 ];
@@ -383,7 +383,7 @@ export default function Home() {
                 </span>
                 <img
                   className="-mt-1 block h-auto w-52 object-contain object-left sm:w-64"
-                  src="http://landing-martz.local/wp-content/uploads/2026/09/talento.png"
+                  src="https://wp.martzentertainment.com/wp-content/uploads/2026/09/talento.png"
                   alt="Talento"
                 />
                 <span className="mt-1 block font-hero text-[2.55rem] uppercase leading-[0.92] text-[#26353a] sm:text-5xl">
@@ -421,7 +421,7 @@ export default function Home() {
           <figure className="relative m-0 min-h-80 overflow-hidden sm:min-h-105 lg:min-h-155">
             <img
               className="absolute inset-0 h-full w-full object-cover object-center brightness-[0.9]"
-              src="http://landing-martz.local/wp-content/uploads/2026/09/image-concierto.webp"
+              src="https://wp.martzentertainment.com/wp-content/uploads/2026/09/image-concierto.webp"
               alt="Músicos actuando frente a una multitud en un concierto"
               loading="lazy"
             />
@@ -591,19 +591,19 @@ export default function Home() {
             <div className="relative min-h-71.25 sm:min-h-77.5 lg:min-h-85">
               <img
                 className="absolute left-[2%] top-[20%] z-20 w-32 -rotate-4 object-contain sm:w-40 lg:left-[12%] lg:w-44"
-                src="http://landing-martz.local/wp-content/uploads/2026/09/Encuentra_.png"
+                src="https://wp.martzentertainment.com/wp-content/uploads/2026/09/Encuentra_.png"
                 alt="Encuentra."
                 loading="lazy"
               />
               <img
                 className="absolute left-[64%] top-[14%] z-20 w-28 -rotate-2 object-contain sm:left-[59%] sm:w-36 lg:w-40"
-                src="http://landing-martz.local/wp-content/uploads/2026/09/Conecta_.png"
+                src="https://wp.martzentertainment.com/wp-content/uploads/2026/09/Conecta_.png"
                 alt="Conecta."
                 loading="lazy"
               />
               <img
                 className="absolute bottom-auto top-10 left-45 -translate-x-1/2 rounded-t-[45%] object-top drop-shadow-[0_0_24px_rgba(236,0,191,0.4)] sm:h-[88%] sm:w-[54%] lg:left-0 lg:h-[84%] lg:w-full lg:translate-x-0 object-contain"
-                src="http://landing-martz.local/wp-content/uploads/2026/09/image-dj.webp"
+                src="https://wp.martzentertainment.com/wp-content/uploads/2026/09/image-dj.webp"
                 alt="Artista actuando en vivo frente al público"
                 loading="lazy"
               />
@@ -619,7 +619,7 @@ export default function Home() {
                   evento{" "}
                   <img
                     className="inline-block w-28 align-middle object-contain sm:w-36 lg:w-40"
-                    src="http://landing-martz.local/wp-content/uploads/2026/09/necesita.png"
+                    src="https://wp.martzentertainment.com/wp-content/uploads/2026/09/necesita.png"
                     alt="necesita"
                     loading="lazy"
                   />
@@ -712,7 +712,7 @@ export default function Home() {
           <figure className="relative m-0 max-h-90 2xl:min-h-160 overflow-hidden bg-[#a500d6] sm:min-h-120 lg:min-h-130">
             <img
               className="absolute inset-0 h-full w-full object-cover object-center"
-              src="http://landing-martz.local/wp-content/uploads/2026/09/girl-image.webp"
+              src="https://wp.martzentertainment.com/wp-content/uploads/2026/09/girl-image.webp"
               alt="DJ disfrutando de la música durante un evento"
               loading="lazy"
             />
@@ -777,7 +777,7 @@ export default function Home() {
           <figure className="relative m-0 min-h-85 overflow-hidden sm:min-h-110 md:min-h-130">
             <img
               className="absolute inset-0 h-full w-full object-cover object-center"
-              src="http://landing-martz.local/wp-content/uploads/2026/09/dj-image.webp"
+              src="https://wp.martzentertainment.com/wp-content/uploads/2026/09/dj-image.webp"
               alt="DJ trabajando en su consola durante un evento"
               loading="lazy"
             />
@@ -860,7 +860,7 @@ export default function Home() {
                 </p>
                 <img
                   className="aspect-4/5 w-full rounded-xl object-cover object-center shadow-xl"
-                  src="http://landing-martz.local/wp-content/uploads/2026/09/clients-image.webp"
+                  src="https://wp.martzentertainment.com/wp-content/uploads/2026/09/clients-image.webp"
                   alt="Clientes disfrutando de una celebración con música en vivo"
                   loading="lazy"
                 />
@@ -874,7 +874,7 @@ export default function Home() {
                 </p>
                 <img
                   className="aspect-4/5 w-full rounded-xl object-cover object-center shadow-xl"
-                  src="http://landing-martz.local/wp-content/uploads/2026/09/talents-image.webp"
+                  src="https://wp.martzentertainment.com/wp-content/uploads/2026/09/talents-image.webp"
                   alt="Artista con audífonos lista para presentarse en un evento"
                   loading="lazy"
                 />
@@ -1133,7 +1133,7 @@ export default function Home() {
         >
           <img
             className="pointer-events-none absolute bottom-0 right-0 -z-10 hidden h-full max-h-[680px] w-[42%] object-contain object-right-bottom lg:block"
-            src="http://landing-martz.local/wp-content/uploads/2026/09/form.webp"
+            src="https://wp.martzentertainment.com/wp-content/uploads/2026/09/form.webp"
             alt=""
             aria-hidden="true"
             loading="lazy"

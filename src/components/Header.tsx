@@ -58,7 +58,7 @@ export default function Header() {
         >
           <img
             className="h-10 w-[145px] object-contain object-left sm:h-11 sm:w-[160px]"
-            src="http://landing-martz.local/wp-content/uploads/2026/09/martz-logo-small.webp"
+            src="https://wp.martzentertainment.com/wp-content/uploads/2026/09/martz-logo-small.webp"
             alt="Martz Entertainment"
           />
         </button>

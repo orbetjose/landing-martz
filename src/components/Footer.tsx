@@ -84,7 +84,7 @@ export default function Footer() {
       <div className="mx-auto grid max-w-6xl grid-cols-2 gap-x-8 gap-y-10 px-6 py-10 sm:px-10 sm:py-12 lg:grid-cols-[1.25fr_1fr_1fr_1fr] lg:gap-12">
         <div className="col-span-2 max-w-xs lg:col-span-1">
           <a href="#hero-title" className="inline-flex items-center gap-2" aria-label="Martz, inicio">
-            <img src="http://landing-martz.local/wp-content/uploads/2026/09/martz-logo-small.webp" alt="Logo martz footer" className="h-14 object-contain" />
+            <img src="https://wp.martzentertainment.com/wp-content/uploads/2026/09/martz-logo-small.webp" alt="Logo martz footer" className="h-14 object-contain" />
           </a>
           <p className="mt-3 max-w-[240px] text-[13px] leading-relaxed text-white/85">
             La plataforma líder para conectar talentos y clientes en el mundo de los eventos.
