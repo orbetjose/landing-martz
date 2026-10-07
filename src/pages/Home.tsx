@@ -1229,6 +1229,18 @@ export default function Home() {
                   required
                 />
 
+                <label className="flex items-start gap-2 text-sm text-white sm:col-span-2">
+                  <input
+                    className="mt-1 accent-[#ec27cb]"
+                    type="checkbox"
+                    name="aceptaPoliticaPrivacidad"
+                    required
+                  />
+                  <span>
+                    Acepto la política de privacidad.
+                  </span>
+                </label>
+
                 <button
                   className="inline-flex min-h-11 items-center justify-center rounded-md bg-[#ec27cb] px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#d51ab5] disabled:cursor-wait disabled:opacity-70 sm:col-span-2"
                   type="submit"

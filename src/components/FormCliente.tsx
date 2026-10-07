@@ -104,6 +104,18 @@ export default function FormCliente({ onClose }: { onClose: () => void }) {
           />
         </label>
 
+        <label className="flex items-start gap-2 text-sm font-normal text-[#34313a] sm:col-span-2">
+          <input
+            className="mt-1 accent-[#6000cf]"
+            type="checkbox"
+            name="aceptaPoliticaPrivacidad"
+            required
+          />
+          <span>
+            Acepto la política de privacidad.
+          </span>
+        </label>
+
         {status === "success" && (
           <p className="text-sm text-green-700 sm:col-span-2" role="status">
             Recibimos tu solicitud. Gracias por contactarnos.
