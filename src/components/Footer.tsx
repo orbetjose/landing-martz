@@ -1,3 +1,6 @@
+import { type MouseEvent } from "react";
+import { useLocation, useNavigate } from "react-router";
+
 const companyLinks = [
   { label: "Quiénes somos", href: "#about-title" },
   { label: "Ayuda", href: "#faq-title" },
@@ -60,13 +63,48 @@ function FooterLinks({
   title: string;
   links: { label: string; href: string }[];
 }) {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   return (
     <nav aria-label={title}>
       <h2 className="mb-5 text-sm font-bold text-white">{title}</h2>
       <ul className="space-y-4">
         {links.map((link) => (
           <li key={link.label}>
-            <a className="text-[13px] text-white/80 transition-colors hover:text-white" href={link.href}>
+            <a
+              className="text-[13px] text-white/80 transition-colors hover:text-white"
+              href={link.href}
+              onClick={(event) => {
+                if (!link.href.startsWith("#")) return;
+                event.preventDefault();
+                const targetId = link.href.slice(1);
+                const leadForm =
+                  targetId === "crear-evento"
+                    ? "cliente"
+                    : targetId === "registrar-talento"
+                      ? "talento"
+                      : undefined;
+
+                if (location.pathname === "/") {
+                  if (leadForm) {
+                    window.dispatchEvent(
+                      new CustomEvent("open-lead-form", { detail: leadForm }),
+                    );
+                  } else {
+                    document.getElementById(targetId)?.scrollIntoView({
+                      behavior: "smooth",
+                      block: "start",
+                    });
+                  }
+                  return;
+                }
+
+                navigate("/", {
+                  state: leadForm ? { leadForm } : { scrollTo: targetId },
+                });
+              }}
+            >
               {link.label}
             </a>
           </li>
@@ -78,12 +116,39 @@ function FooterLinks({
 
 export default function Footer() {
   const year = new Date().getFullYear();
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  function navigateToFooterTarget(event: MouseEvent<HTMLAnchorElement>) {
+    const anchor = event.currentTarget;
+    const targetId = anchor.hash.slice(1);
+    if (!targetId) return;
+
+    event.preventDefault();
+    if (location.pathname === "/") {
+      document.getElementById(targetId)?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    } else {
+      navigate("/", { state: { scrollTo: targetId } });
+    }
+  }
 
   return (
     <footer className="bg-[#1f0344] text-white">
       <div className="mx-auto grid max-w-6xl grid-cols-2 gap-x-8 gap-y-10 px-6 py-10 sm:px-10 sm:py-12 lg:grid-cols-[1.25fr_1fr_1fr_1fr] lg:gap-12">
         <div className="col-span-2 max-w-xs lg:col-span-1">
-          <a href="#hero-title" className="inline-flex items-center gap-2" aria-label="Martz, inicio">
+          <a
+            href="/"
+            onClick={(event) => {
+              if (location.pathname !== "/") return;
+              event.preventDefault();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+            className="inline-flex items-center gap-2"
+            aria-label="Martz, inicio"
+          >
             <img src="https://wp.martzentertainment.com/wp-content/uploads/2026/09/martz-logo-small.webp" alt="Logo martz footer" className="h-14 object-contain" />
           </a>
           <p className="mt-3 max-w-[240px] text-[13px] leading-relaxed text-white/85">
@@ -117,11 +182,19 @@ export default function Footer() {
       <div className="mx-auto max-w-6xl border-t border-white/20 px-6 py-5 text-center sm:px-10">
         <p className="text-xs text-white/80">© {year} Martz Entertainment. Todos los derechos reservados.</p>
         <div className="mt-2 flex items-center justify-center gap-3 text-xs text-white/75">
-          <a className="underline underline-offset-2 hover:text-white" href="#terminos-y-condiciones">
+          <a
+            className="underline underline-offset-2 hover:text-white"
+            href="/#terminos-y-condiciones"
+            onClick={navigateToFooterTarget}
+          >
             Términos y Condiciones
           </a>
           <span aria-hidden="true">|</span>
-          <a className="underline underline-offset-2 hover:text-white" href="#politica-de-privacidad">
+          <a
+            className="underline underline-offset-2 hover:text-white"
+            href="/#politica-de-privacidad"
+            onClick={navigateToFooterTarget}
+          >
             Política de Privacidad
           </a>
         </div>

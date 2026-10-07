@@ -1,10 +1,14 @@
 import { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router";
+import { HelmetProvider } from "react-helmet-async";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Home from "./pages/Home";
+import Blog from "./pages/Blog";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+import Post from "./pages/Post";
+import NotFound from "./pages/NotFound";
 
 function App() {
   useEffect(() => {
@@ -18,13 +22,18 @@ function App() {
   }, []);
 
   return (
-    <BrowserRouter>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-      </Routes>
-      <Footer />
-    </BrowserRouter>
+    <HelmetProvider>
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<Post />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+    </HelmetProvider>
   );
 }
 

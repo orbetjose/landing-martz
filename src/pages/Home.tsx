@@ -1,6 +1,9 @@
-import { useState, type FormEvent, type ReactNode } from "react";
+import { useEffect, useState, type FormEvent, type ReactNode } from "react";
+import { useLocation, useNavigate } from "react-router";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import FormCliente from "../components/FormCliente";
+import FormTalento from "../components/FormTalento";
 
 const CONTACT_API_URL = "https://wp.martzentertainment.com/wp-json/martz/v1/contact";
 
@@ -330,7 +333,61 @@ const serviceCards = [
 ];
 
 export default function Home() {
+  const location = useLocation();
+  const navigate = useNavigate();
   const [contactStatus, setContactStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [activeLeadForm, setActiveLeadForm] = useState<"cliente" | "talento" | null>(null);
+
+  useEffect(() => {
+    if (location.pathname !== "/" || !location.state) return;
+
+    const navigationState = location.state as {
+      scrollTo?: string;
+      leadForm?: "cliente" | "talento";
+    };
+    if (!navigationState.scrollTo && !navigationState.leadForm) return;
+
+    const frameId = window.requestAnimationFrame(() => {
+      if (navigationState.scrollTo) {
+        document.getElementById(navigationState.scrollTo)?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+      if (navigationState.leadForm) {
+        setActiveLeadForm(navigationState.leadForm);
+      }
+      navigate("/", { replace: true, state: null });
+    });
+
+    return () => window.cancelAnimationFrame(frameId);
+  }, [location.key, location.pathname, location.state, navigate]);
+
+  useEffect(() => {
+    function handleOpenLeadForm(event: Event) {
+      const form = (event as CustomEvent<"cliente" | "talento">).detail;
+      if (form === "cliente" || form === "talento") setActiveLeadForm(form);
+    }
+
+    window.addEventListener("open-lead-form", handleOpenLeadForm);
+    return () => window.removeEventListener("open-lead-form", handleOpenLeadForm);
+  }, []);
+
+  useEffect(() => {
+    if (!activeLeadForm) return;
+
+    function handleEscape(event: KeyboardEvent) {
+      if (event.key === "Escape") setActiveLeadForm(null);
+    }
+
+    const previousBodyOverflow = document.body.style.overflow;
+    document.addEventListener("keydown", handleEscape);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", handleEscape);
+      document.body.style.overflow = previousBodyOverflow;
+    };
+  }, [activeLeadForm]);
 
   async function handleContactSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -397,18 +454,20 @@ export default function Home() {
               </p>
 
               <div className="mt-6 flex flex-nowrap gap-2">
-                <a
+                <button
                   className="inline-flex min-h-10 items-center justify-center whitespace-nowrap rounded-sm bg-[#ec27cb] px-3 py-2 font-heading text-xs font-bold text-white transition-colors hover:bg-[#d51ab5] sm:px-4 sm:text-sm"
-                  href="#crear-evento"
+                  type="button"
+                  onClick={() => setActiveLeadForm("cliente")}
                 >
-                  Crear un evento
-                </a>
-                <a
+                  Cotizar evento
+                </button>
+                <button
                   className="inline-flex min-h-10 items-center justify-center whitespace-nowrap rounded-sm bg-[#36106f] px-3 py-2 font-heading text-xs font-bold text-white transition-colors hover:bg-[#260950] sm:px-4 sm:text-sm"
-                  href="#registrar-talento"
+                  type="button"
+                  onClick={() => setActiveLeadForm("talento")}
                 >
                   Registrar talento
-                </a>
+                </button>
               </div>
             </div>
           </div>
@@ -490,12 +549,13 @@ export default function Home() {
                 </div>
               </div>
 
-              <a
-                className="mt-8 inline-flex min-h-10 items-center justify-center rounded-sm bg-[#ff3de4] px-4 py-2 text-sm font-bold text-white transition-colors hover:bg-[#d51ab5]"
-                href="#crear-evento"
+              <button
+                className="mt-8 font-inter inline-flex min-h-10 items-center justify-center rounded-sm bg-[#ec27cb] px-4 py-2 text-sm font-bold text-white transition-colors hover:bg-[#d51ab5]"
+                type="button"
+                onClick={() => setActiveLeadForm("cliente")}
               >
-                Crear un evento
-              </a>
+                Cotizar evento
+              </button>
             </div>
           </div>
         </section>
@@ -511,30 +571,8 @@ export default function Home() {
             Nuestros Valores
           </h2>
 
-          <div className="relative mx-auto md:max-w-6xl">
-            <button
-              className="values-carousel-prev absolute left-0 top-1/2 z-10 flex h-9 w-9 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white text-black transition-colors hover:text-[#ff3de4] sm:-translate-x-full"
-              type="button"
-              aria-label="Ver valores anteriores"
-            >
-              <svg
-                aria-hidden="true"
-                viewBox="0 0 24 24"
-                className="h-6 w-6 fill-none stroke-current"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="m15 18-6-6 6-6" />
-              </svg>
-            </button>
-
+          <div className="mx-auto md:max-w-6xl">
             <Swiper
-              modules={[Navigation]}
-              navigation={{
-                prevEl: ".values-carousel-prev",
-                nextEl: ".values-carousel-next",
-              }}
               slidesPerView={1}
               spaceBetween={14}
               breakpoints={{
@@ -564,22 +602,6 @@ export default function Home() {
               ))}
             </Swiper>
 
-            <button
-              className="values-carousel-next absolute right-0 top-1/2 z-10 flex h-9 w-9 translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white text-black transition-colors hover:text-[#ec27cb] sm:translate-x-full"
-              type="button"
-              aria-label="Ver más valores"
-            >
-              <svg
-                aria-hidden="true"
-                viewBox="0 0 24 24"
-                className="h-6 w-6 fill-none stroke-current"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="m9 18 6-6-6-6" />
-              </svg>
-            </button>
           </div>
         </section>
 
@@ -854,9 +876,13 @@ export default function Home() {
             <div className="mx-auto mt-8 grid max-w-3xl grid-cols-1 gap-7 sm:mt-10 sm:grid-cols-2 sm:gap-10">
               <article className="mx-auto w-full max-w-[320px]">
                 <p className="mb-3 flex justify-center">
-                  <span className="rounded-full bg-[#ec27cb] px-4 py-1 text-sm font-medium text-white">
+                  <button
+                    className="rounded-full bg-[#ec27cb] px-4 py-1 text-sm font-medium text-white transition-colors hover:bg-[#d51ab5]"
+                    type="button"
+                    onClick={() => setActiveLeadForm("cliente")}
+                  >
                     Para Clientes
-                  </span>
+                  </button>
                 </p>
                 <img
                   className="aspect-4/5 w-full rounded-xl object-cover object-center shadow-xl"
@@ -868,9 +894,13 @@ export default function Home() {
 
               <article className="mx-auto w-full max-w-[320px]">
                 <p className="mb-3 flex justify-center">
-                  <span className="rounded-full bg-white px-4 py-1 text-sm font-medium text-[#5a3881]">
+                  <button
+                    className="rounded-full bg-white px-4 py-1 text-sm font-medium text-[#5a3881] transition-colors hover:bg-[#f1f2f6]"
+                    type="button"
+                    onClick={() => setActiveLeadForm("talento")}
+                  >
                     Para Talentos
-                  </span>
+                  </button>
                 </p>
                 <img
                   className="aspect-4/5 w-full rounded-xl object-cover object-center shadow-xl"
@@ -1226,6 +1256,27 @@ export default function Home() {
           </div>
         </section>
       </main>
+      {activeLeadForm && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center overflow-y-auto bg-black/60 p-4"
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) setActiveLeadForm(null);
+          }}
+        >
+          <div
+            className="my-auto max-h-[calc(100vh-2rem)] w-full max-w-2xl overflow-y-auto rounded-2xl bg-white p-5 shadow-2xl sm:p-8"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby={activeLeadForm === "cliente" ? "form-cliente-title" : "form-talento-title"}
+          >
+            {activeLeadForm === "cliente" ? (
+              <FormCliente onClose={() => setActiveLeadForm(null)} />
+            ) : (
+              <FormTalento onClose={() => setActiveLeadForm(null)} />
+            )}
+          </div>
+        </div>
+      )}
     </>
   );
 }
