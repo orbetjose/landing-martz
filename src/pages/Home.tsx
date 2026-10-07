@@ -4,8 +4,9 @@ import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import FormCliente from "../components/FormCliente";
 import FormTalento from "../components/FormTalento";
+import { getFormApiEndpoint, submitLeadForm } from "../components/leadFormApi";
 
-const CONTACT_API_URL = "https://wp.martzentertainment.com/wp-json/martz/v1/contact";
+const CONTACT_API_URL = getFormApiEndpoint("contactos");
 
 const values = [
   {
@@ -336,6 +337,7 @@ export default function Home() {
   const location = useLocation();
   const navigate = useNavigate();
   const [contactStatus, setContactStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [contactErrorMessage, setContactErrorMessage] = useState("");
   const [activeLeadForm, setActiveLeadForm] = useState<"cliente" | "talento" | null>(null);
 
   useEffect(() => {
@@ -395,32 +397,26 @@ export default function Home() {
     const form = event.currentTarget;
     const formData = new FormData(form);
     const payload = {
-      name: String(formData.get("name") ?? ""),
+      nombre: String(formData.get("name") ?? ""),
       email: String(formData.get("email") ?? ""),
-      phone: String(formData.get("phone") ?? ""),
-      subject: String(formData.get("subject") ?? ""),
-      message: String(formData.get("message") ?? ""),
+      telefono: String(formData.get("phone") ?? ""),
+      asunto: String(formData.get("subject") ?? ""),
+      mensaje: String(formData.get("message") ?? ""),
     };
 
     setContactStatus("sending");
+    setContactErrorMessage("");
 
     try {
-      const response = await fetch(CONTACT_API_URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
-
-      if (!response.ok) {
-        throw new Error(`Contact API responded with ${response.status}`);
-      }
-
+      await submitLeadForm(CONTACT_API_URL, payload);
       form.reset();
       setContactStatus("success");
-    } catch {
+    } catch (submitError) {
+      setContactErrorMessage(
+        submitError instanceof Error
+          ? submitError.message
+          : "No pudimos enviar tu mensaje. Inténtalo de nuevo más tarde.",
+      );
       setContactStatus("error");
     }
   }
@@ -1248,7 +1244,7 @@ export default function Home() {
                 )}
                 {contactStatus === "error" && (
                   <p className="text-sm text-white sm:col-span-2" role="alert">
-                    No pudimos enviar tu mensaje. Inténtalo de nuevo más tarde.
+                    {contactErrorMessage}
                   </p>
                 )}
               </form>

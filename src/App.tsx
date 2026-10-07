@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import Blog from "./pages/Blog";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+import { LanguageProvider } from "./components/LanguageContext.tsx";
 import Post from "./pages/Post";
 import NotFound from "./pages/NotFound";
 
@@ -24,14 +25,16 @@ function App() {
   return (
     <HelmetProvider>
       <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/blog/:slug" element={<Post />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-        <Footer />
+        <LanguageProvider>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<Post />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+          <Footer />
+        </LanguageProvider>
       </BrowserRouter>
     </HelmetProvider>
   );

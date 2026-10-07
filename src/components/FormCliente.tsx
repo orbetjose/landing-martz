@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from "react";
-import { submitLeadForm } from "./leadFormApi";
+import { getFormApiEndpoint, submitLeadForm } from "./leadFormApi";
 
-const CLIENT_FORM_API_URL = import.meta.env.VITE_WP_CLIENT_FORM_API_URL;
+const CLIENT_FORM_API_URL = getFormApiEndpoint("eventos");
 const fieldClassName =
   "min-h-12 w-full rounded-lg border border-[#dedde3] bg-white px-4 py-3 text-sm text-[#242128] outline-none transition focus:border-[#6000cf] focus:ring-2 focus:ring-[#6000cf]/15";
 
@@ -21,8 +21,8 @@ export default function FormCliente({ onClose }: { onClose: () => void }) {
         nombre: String(data.get("nombre") ?? ""),
         correo: String(data.get("correo") ?? ""),
         telefono: String(data.get("telefono") ?? ""),
-        servicio: String(data.get("servicio") ?? ""),
-        observaciones: String(data.get("observaciones") ?? ""),
+        servicio_interes: String(data.get("servicio") ?? ""),
+        mensaje: String(data.get("observaciones") ?? ""),
       });
       form.reset();
       setStatus("success");

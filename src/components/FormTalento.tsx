@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from "react";
-import { submitLeadForm } from "./leadFormApi";
+import { getFormApiEndpoint, submitLeadForm } from "./leadFormApi";
 
-const TALENT_FORM_API_URL = import.meta.env.VITE_WP_TALENT_FORM_API_URL;
+const TALENT_FORM_API_URL = getFormApiEndpoint("talentos");
 const fieldClassName =
   "min-h-12 w-full rounded-lg border border-[#dedde3] bg-white px-4 py-3 text-sm text-[#242128] outline-none transition focus:border-[#6000cf] focus:ring-2 focus:ring-[#6000cf]/15";
 
@@ -19,12 +19,13 @@ export default function FormTalento({ onClose }: { onClose: () => void }) {
     try {
       await submitLeadForm(TALENT_FORM_API_URL, {
         nombre: String(data.get("nombre") ?? ""),
-        nombreArtistico: String(data.get("nombreArtistico") ?? ""),
+        nombre_artistico: String(data.get("nombreArtistico") ?? ""),
         email: String(data.get("email") ?? ""),
-        fechaNacimiento: String(data.get("fechaNacimiento") ?? ""),
-        esBandaOGrupo: String(data.get("esBandaOGrupo") ?? ""),
+        fecha_nacimiento: String(data.get("fechaNacimiento") ?? ""),
+        banda_grupo:
+          String(data.get("esBandaOGrupo") ?? "") === "si" ? "Sí" : "No, soy solista",
         telefono: String(data.get("telefono") ?? ""),
-        redesSociales: String(data.get("redesSociales") ?? ""),
+        redes_sociales: String(data.get("redesSociales") ?? ""),
         ciudad: String(data.get("ciudad") ?? ""),
         pais: String(data.get("pais") ?? ""),
       });

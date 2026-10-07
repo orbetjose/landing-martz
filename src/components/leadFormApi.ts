@@ -1,3 +1,15 @@
+type FormApiRoute = "contactos" | "eventos" | "talentos";
+
+export function getFormApiEndpoint(route: FormApiRoute) {
+  const wordpressDomain = import.meta.env.VITE_WP_DOMAIN;
+
+  if (!wordpressDomain) {
+    return undefined;
+  }
+
+  return `${wordpressDomain.replace(/\/+$/, "")}/wp-json/martz/v1/${route}`;
+}
+
 export async function submitLeadForm(
   endpoint: string | undefined,
   payload: Record<string, string>,
