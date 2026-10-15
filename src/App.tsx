@@ -8,6 +8,7 @@ import Blog from "./pages/Blog";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import { LanguageProvider } from "./components/LanguageContext.tsx";
+import WhatsAppButton from "./components/WhatsAppButton";
 import Post from "./pages/Post";
 import NotFound from "./pages/NotFound";
 
@@ -27,6 +28,7 @@ function App() {
       <BrowserRouter>
         <LanguageProvider>
           <Header />
+          <WhatsAppButton />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/blog" element={<Blog />} />
