@@ -5,8 +5,8 @@ const companyLinks = [
   { label: "Quiénes somos", href: "#about-title" },
   { label: "Ayuda", href: "#faq-title" },
   { label: "Contacto", href: "#contacto" },
-  { label: "Términos y Condiciones", href: "#terminos-y-condiciones" },
-  { label: "Política de Privacidad", href: "#politica-de-privacidad" },
+  { label: "Términos y Condiciones", href: "https://wp.martzentertainment.com/wp-content/uploads/2026/10/Martz_Terminos_y_Condiciones_Web.pdf" },
+  { label: "Política de Privacidad", href: "https://wp.martzentertainment.com/wp-content/uploads/2026/10/Martz_Politica_de_Privacidad_Web.pdf" },
 ];
 
 const serviceLinks = [
@@ -184,7 +184,8 @@ export default function Footer() {
         <div className="mt-2 flex items-center justify-center gap-3 text-xs text-white/75">
           <a
             className="underline underline-offset-2 hover:text-white"
-            href="/#terminos-y-condiciones"
+            href="https://wp.martzentertainment.com/wp-content/uploads/2026/10/Martz_Terminos_y_Condiciones_Web.pdf"
+            target="_blank"
             onClick={navigateToFooterTarget}
           >
             Términos y Condiciones
@@ -192,7 +193,8 @@ export default function Footer() {
           <span aria-hidden="true">|</span>
           <a
             className="underline underline-offset-2 hover:text-white"
-            href="/#politica-de-privacidad"
+            href="https://wp.martzentertainment.com/wp-content/uploads/2026/10/Martz_Politica_de_Privacidad_Web.pdf"
+            target="_blank"
             onClick={navigateToFooterTarget}
           >
             Política de Privacidad
